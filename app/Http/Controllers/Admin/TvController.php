@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Tv;
+use App\Field;
 use Illuminate\Http\Request;
 
 class TvController extends Controller
@@ -27,7 +28,9 @@ class TvController extends Controller
      */
     public function create()
     {
-        return view('admin.tvs.create');
+        $fields = Field::all();
+
+        return view('admin.tvs.create', compact('fields'));
     }
 
     /**
@@ -47,6 +50,10 @@ class TvController extends Controller
         $new_tv->price = $var['price'];
 
         $new_tv->save();
+
+        if(array_key_exists('fields', $var)) {
+            $new_tv->fields()->attach($var['fields']);
+        }
 
         return redirect()->route('admin.tvs.show', $new_tv['id']);
     }
