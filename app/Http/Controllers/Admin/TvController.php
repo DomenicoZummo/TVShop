@@ -38,7 +38,17 @@ class TvController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $var = $request->all();
+
+        $new_tv = new Tv();
+        $new_tv->name = $var['name'];
+        $new_tv->description = $var['description'];
+        $new_tv->inch = $var['inch'];
+        $new_tv->price = $var['price'];
+
+        $new_tv->save();
+
+        return redirect()->route('admin.tvs.show', $new_tv['id']);
     }
 
     /**
@@ -62,7 +72,9 @@ class TvController extends Controller
      */
     public function edit($id)
     {
-        //
+        $tv = Tv::find($id);
+
+        return view('admin.tvs.edit', compact('tv'));
     }
 
     /**
