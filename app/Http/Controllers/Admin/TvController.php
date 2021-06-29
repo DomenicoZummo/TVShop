@@ -27,7 +27,7 @@ class TvController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.tvs.create');
     }
 
     /**
@@ -49,7 +49,9 @@ class TvController extends Controller
      */
     public function show($id)
     {
-        //
+        $tv = Tv::find($id);
+
+        return view('admin.tvs.show', compact("tv"));
     }
 
     /**
