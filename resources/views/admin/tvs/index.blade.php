@@ -18,7 +18,7 @@
                         <td>{{$tv->id}}</td>
                         <td>{{$tv->name}}</td>
                         <td><a class="btn btn-primary" href="{{route("admin.tvs.show", $tv->id)}}">Show</a></td>
-                        <td>edit</td>
+                        <td><a class="btn btn-warning" href="{{ route("admin.tvs.edit", $tv->id) }}">Edit</a></td>
                         <td>delete</td>
                     </tr>
                 @endforeach
